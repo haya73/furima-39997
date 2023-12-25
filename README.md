@@ -1,6 +1,7 @@
 ## users
 
 |Column               |Type     |Options                     |
+| ------------------- | ------- | -------------------------- |
 |email                |string   |null: false, unique: true   |
 |nickname             |string   |null: false                 |
 |encrypted_password   |string   |null: false                 |
@@ -19,6 +20,7 @@ has_many :orders
 ## items
 
 |Column               |Type         |Options                         |
+| ------------------- | ----------- | ------------------------------ |
 |item_name            |string       |null: false                     |
 |description          |text         |null: false                     |
 |category_id          |integer      |null: false                     |
@@ -37,6 +39,7 @@ has_one    :order
 ## orders
 
 |Column               |Type         |Options                         |
+| ------------------- | ----------- | ------------------------------ |
 |user                 |references   |null: false, foreign_key: true  |
 |item                 |references   |null: false, foreign_key: true  |
 
@@ -50,6 +53,7 @@ belongs_to :item
 ## addresses
 
 |Column               |Type         |Options                        |
+| ------------------- | ----------- | ----------------------------- |
 |post_code            |string       |null: false                    |
 |prefecture_id        |integer      |null: false                    |
 |city                 |string       |null: false                    |
