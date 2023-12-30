@@ -8,7 +8,7 @@ RSpec.describe User, type: :model do
   describe 'ユーザー新規登録' do
     context '新規登録できるとき' do
       it '全ての項目が適切に記載されている' do
-
+        expect(@user).to be_valid
       end
     end
 
@@ -50,6 +50,31 @@ RSpec.describe User, type: :model do
       @user.password_confirmation = 'x000x'
       @user.valid?
       expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
+    end
+    it '名字が空だと登録できない(First)' do
+      @user.first_name = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include('First name 全角文字を使用してください')
+    end
+    it '名前が空だと登録できない(Last)' do
+      @user.last_name = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Last name 全角文字を使用してください')
+    end
+    it 'お名前カナ(全角)は、全角（カタカナ）での入力が必須であること。(First)' do
+      @user.first_name_kana = 'ぷ'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('First name kana 全角カタカナを使用してください')
+    end
+    it 'お名前カナ(全角)は、全角（カタカナ）での入力が必須であること。(Last)' do
+      @user.last_name_kana = 'う'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Last name kana 全角カタカナを使用してください')
+    end
+    it '生年月日が空だと登録できない' do
+      @user.birthday = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Birthday can't be blank")
     end
   end
 end
