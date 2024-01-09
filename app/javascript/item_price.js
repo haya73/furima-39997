@@ -7,7 +7,7 @@ priceInput.addEventListener("input", () => {
     // 手数料（10%）を計算
     const tax = Math.floor(inputValue * 0.1);
     // 販売利益を計算
-    const profit = inputValue - tax;
+    const profit = Math.floor(inputValue - tax);
     // 計算結果を表示
     addTaxDom.innerHTML = `¥${tax.toLocaleString()}`;
     profitDom.innerHTML = `¥${profit.toLocaleString()}`;
