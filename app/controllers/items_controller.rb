@@ -13,6 +13,11 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
+  def update
+    item.update(item_params)
+    redirect_to root_path
+  end
+
   def create
     @item = Item.new(item_params)
     if @item.save
