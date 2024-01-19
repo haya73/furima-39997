@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show, :destroy]
-  before_action :set_item, only: [:show, :edit, :update, :create, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, only: [:edit]
 
   def index
@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    item = Item.new(params[:id])
+    @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
     else
