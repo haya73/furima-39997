@@ -5,8 +5,8 @@ class OrdersAddresses
 
   with_options presence: true do
     validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-    validates :prefecture_id, numericality: {other_than: 0, message: "can't be blank"}
-    validates :telephone_number, format: {with: /\A\d{1,11}\z/, message: "11桁以内で入力してください"}
+    validates :prefecture_id, numericality: {other_than: 1, message: "can't be blank"}
+    validates :telephone_number, format: {with: /\A\d{10,11}\z/, message: "は10桁以上11桁以内の数字で入力してください"}
     validates :user_id, :item_id, :city, :address
 
   end
