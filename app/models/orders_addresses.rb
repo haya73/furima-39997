@@ -22,6 +22,7 @@ class OrdersAddresses
       address: address, 
       building: building, 
       telephone_number: telephone_number,
+      order_id: order.id
     )
   end
 end

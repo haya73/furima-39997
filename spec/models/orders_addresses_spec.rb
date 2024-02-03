@@ -60,6 +60,11 @@ RSpec.describe OrdersAddresses, type: :model do
         @orders_addresses.valid?
         expect(@orders_addresses.errors.full_messages).to include("Telephone number は10桁以上11桁以内の数字で入力してください")
       end
+      it 'telephone_numberが空では保存できないこと' do
+        @orders_addresses.telephone_number = ''
+        @orders_addresses.valid?
+        expect(@orders_addresses.errors.full_messages).to include("Telephone number は10桁以上11桁以内の数字で入力してください")
+      end
       it 'userが紐付いていないと保存できないこと' do
         @orders_addresses.user_id = nil
         @orders_addresses.valid?
