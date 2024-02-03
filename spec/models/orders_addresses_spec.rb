@@ -70,6 +70,11 @@ RSpec.describe OrdersAddresses, type: :model do
         @orders_addresses.valid?
         expect(@orders_addresses.errors.full_messages).to include("Token can't be blank")
       end
+      it 'itemが紐付いていないと保存できないこと' do
+        @orders_addresses.item_id = nil
+        @orders_addresses.valid?
+        expect(@orders_addresses.errors.full_messages).to include("Item can't be blank")
+      end
     end
   end
 end
